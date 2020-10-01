@@ -49,8 +49,5 @@ public class AutomationSteps {
     public void clickSingInRegister() {
         automationPageObject.clickSingInRegister();
     }
-    @Step
-    public void verifyMyAccountRegister(List<String> parameters) {
-        automationPageObject.verifyMyAccountRegister(parameters);
-    }
+
 }

@@ -16,7 +16,7 @@ Feature: User Creates an account
 
     Examples:
       | FirstName | LastName | Email                               | Pass      | Company  | AddressOne  | AddressTwo  | City     | PostalCode | OtherInfo | HomePhone | MobilePhone | Alias          | ConfirmAccount |
-      | Sebastian | Londono  | sebastianL@gmail.com | R3alPage. | RealPage | Cr87a#32-81 | Cr87a#32-81 | Medellin | 33206      | Hiring    | 7748954   | 3005647895  | TestAutomation | MY ACCOUNT     |
+      | Sebastian | Londono  | sebas0296@gmail.com | R3alPage. | RealPage | Cr87a#32-81 | Cr87a#32-81 | Medellin | 33206      | Hiring    | 7748954   | 3005647895  | TestAutomation | MY ACCOUNT     |
 
   @LogInAccount
   Scenario Outline: user can log in account
@@ -31,4 +31,4 @@ Feature: User Creates an account
       | <ConfirmAccount> |
     Examples:
       | Email                   | Pass      | ConfirmAccount                                                                            |
-      | sloondonom@gmail.com | R3alPage. | MY ACCOUNT  |
+      | sebas0296@gmail.com  | R3alPage. | MY ACCOUNT  |

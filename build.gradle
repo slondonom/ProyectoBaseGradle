@@ -1,67 +1,62 @@
+group 'com.ingjuanfg'
+version '1.0-SNAPSHOT'
+
 repositories {
-    jcenter()
     mavenCentral()
 }
 
 buildscript {
     repositories {
-        jcenter()
-        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.2.0")
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.70")
     }
 }
 
-apply plugin: 'groovy'
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 apply plugin: 'net.serenity-bdd.aggregator'
-apply plugin: 'java-library'
-apply plugin: 'jacoco'
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext{
+    serenityVersion = '2.0.70'
+    serenityCucumberVersion = '1.0.4'
+}
 
 dependencies {
-    compile 'net.serenity-bdd:serenity-cucumber:1.9.5'
-    compile group: 'net.serenity-bdd', name: 'serenity-core', version: '2.0.52'
-    compile group: 'net.serenity-bdd', name: 'serenity-junit', version: '2.0.52'
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-ensure:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber4:$rootProject.ext.serenityCucumberVersion"
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
+    implementation "org.apache.poi:poi:3.17"
+    implementation "org.apache.poi:poi-ooxml:3.17"
+    implementation "org.apache.commons:commons-lang3:3.9"
+    implementation 'org.apache.logging.log4j:log4j-core:2.13.1'
 
-jacoco {
-    toolVersion = "0.8.5"
-    reportsDir = file("$buildDir/customJacocoReportDir")
-}
+    implementation "org.seleniumhq.selenium:selenium-java:3.141.59"
 
-jacocoTestReport {
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination file("${buildDir}/jacocoHtml")
-    }
+    testImplementation "junit:junit:4.12"
+    testImplementation 'org.assertj:assertj-core:3.9.0'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.7'
+    testImplementation 'org.hamcrest:hamcrest-core:1.3'
 }
 
 test {
-    useJUnit {
-        include "**/*RunnerTags*"
-        gradle.startParameter.continueOnFailure = true
-        testLogging.showStandardStreams = true
-        systemProperties System.getProperties()
-    }
-
-    jacoco {
-        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-        classDumpDir = file("$buildDir/jacoco/classpathdumps")
-    }
+    systemProperty 'properties', System.getProperty('properties')
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.5
-            }
-        }
-    }
+tasks.withType(Test) {
+    systemProperties = System.properties
 }
+
+gradle.startParameter.continueOnFailure = true

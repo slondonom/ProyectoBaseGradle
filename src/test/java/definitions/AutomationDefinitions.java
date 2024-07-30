@@ -10,7 +10,7 @@ import java.util.List;
 public class AutomationDefinitions {
     @Steps
     AutomationSteps automationSteps;
-    @Given("^The user is on Homepage$")
+    @Given("^the user is on Homepage$")
     public void theUserIsOnHomepage() {
         automationSteps.openHomePage();
     }

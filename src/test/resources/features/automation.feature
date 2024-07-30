@@ -3,7 +3,7 @@ Feature: User Creates an account
 
   @RegisterAccount
   Scenario Outline: User can create an account
-    Given The user is on Homepage
+    Given the user is on Homepage
     Then the user clicks on Sign in
     And user enters email
       | <Email> |
@@ -15,8 +15,8 @@ Feature: User Creates an account
       | <ConfirmAccount> |
 
     Examples:
-      | FirstName | LastName | Email                               | Pass      | Company  | AddressOne  | AddressTwo  | City     | PostalCode | OtherInfo | HomePhone | MobilePhone | Alias          | ConfirmAccount |
-      | Sebastian | Londono  | sebas0296@gmail.com | R3alPage. | RealPage | Cr87a#32-81 | Cr87a#32-81 | Medellin | 33206      | Hiring    | 7748954   | 3005647895  | TestAutomation | MY ACCOUNT     |
+      | FirstName | LastName | Email                        | Pass      | Company  | AddressOne  | AddressTwo  | City     | PostalCode | OtherInfo | HomePhone | MobilePhone | Alias          | ConfirmAccount |
+      | Sebastian | Londono  | sebas1996000000006@gmail.com | R3alPage. | RealPage | Cr87a#32-81 | Cr87a#32-81 | Medellin | 33206      | Hiring    | 7748954   | 3005647895  | TestAutomation | MY ADDRESSES   |
 
   @LogInAccount
   Scenario Outline: user can log in account
@@ -30,5 +30,5 @@ Feature: User Creates an account
     Then the user is successfully logged in
       | <ConfirmAccount> |
     Examples:
-      | Email                   | Pass      | ConfirmAccount                                                                            |
-      | sebas0296@gmail.com  | R3alPage. | MY ACCOUNT  |
+      | Email                        | Pass      | ConfirmAccount |
+      | sebas1996000000006@gmail.com | R3alPage. | MY ACCOUNT   |

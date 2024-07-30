@@ -9,7 +9,7 @@ import org.junit.Assert;
 import java.util.List;
 import java.util.logging.Logger;
 
-@DefaultUrl("http://automationpractice.com/index.php")
+@DefaultUrl("http://automationpractice.pl/index.php")
 public class AutomationPageObject extends PageObject {
 
     @FindBy(xpath = "//*[@class='login']")
@@ -64,8 +64,14 @@ public class AutomationPageObject extends PageObject {
     @FindBy(xpath = "//label[text()='Sign up for our newsletter!']")
     WebElementFacade newsletter;
 
-    @FindBy(xpath = "//label[text()='Receive special offers from our partners!']")
+    @FindBy(xpath = "//span[text()='Add my first address']")
     WebElementFacade receiveOffers;
+
+    @FindBy(css = "#submitAccount")
+    WebElementFacade register;
+
+    @FindBy(css = "#submitAddress")
+    WebElementFacade btnsave;
 
     @FindBy(xpath = "//input[@id='company']")
     WebElementFacade company;
@@ -91,7 +97,7 @@ public class AutomationPageObject extends PageObject {
     @FindBy(xpath = "//*[@id='uniform-id_country']")
     WebElementFacade selectCountry;
 
-    @FindBy(xpath = "//*[@id='id_country']/option[2]")
+    @FindBy(xpath = "//*[@id='id_country']/option[1]")
     WebElementFacade selectCountryOption;
 
     @FindBy(xpath = "//textarea[@id='other']")
@@ -123,6 +129,9 @@ public class AutomationPageObject extends PageObject {
     WebElementFacade submitSingInRegister;
 
 
+    @FindBy(css = "a.logout")
+    WebElementFacade btnLogout;
+
     public void signIn() {
         login.click();
 
@@ -152,6 +161,7 @@ public class AutomationPageObject extends PageObject {
         yearsBirth.click();
         selectYearsOption.click();
         newsletter.click();
+        register.click();
         receiveOffers.click();
 
 
@@ -176,7 +186,7 @@ public class AutomationPageObject extends PageObject {
 
 
     public void userRegister() {
-        btnRegister.click();
+        btnsave.click();
     }
 
 
@@ -185,6 +195,7 @@ public class AutomationPageObject extends PageObject {
         String textToVerify = labelWelcomeAccount.getText();
         if (textToVerify.equals(parameters.get(0))) {
             Logger.getLogger("TEST SUCCESS");
+            btnLogout.click();
         } else {
             Assert.fail("TEST FAILED");
         }

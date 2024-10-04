@@ -1,9 +1,10 @@
 package pagesObject;
 
+import net.serenitybdd.annotations.DefaultUrl;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.DefaultUrl;
+
 import org.junit.Assert;
 
 import java.util.List;
@@ -137,9 +138,9 @@ public class AutomationPageObject extends PageObject {
 
     }
 
-    public void userEnterEmail(List<String> parameters) {
+    public void userEnterEmail(String email) {
         emailCreate.waitUntilVisible();
-        emailCreate.type(parameters.get(0));
+        emailCreate.type(email);
     }
 
     public void sendCreateAccount() {
@@ -147,12 +148,12 @@ public class AutomationPageObject extends PageObject {
     }
 
 
-    public void fillsAllForm(List<String> parameters) {
+    public void fillsAllForm(String firstNamee, String lastNamee, String email, String pass, String companyy, String addressOne, String addressTwo, String city, String postalCode, String otherInfo, String homePhone, String mobilePhone, String alias) {
         genderMale.click();
-        firstName.sendKeys(parameters.get(0));
-        lastName.sendKeys(parameters.get(1));
-        emailPersonalInformation.type(parameters.get(2));
-        passwdPersonalInformation.sendKeys(parameters.get(3));
+        firstName.sendKeys(firstNamee);
+        lastName.sendKeys(lastNamee);
+        emailPersonalInformation.type(email);
+        passwdPersonalInformation.sendKeys(pass);
         daysBirth.waitUntilClickable();
         daysBirth.click();
         selectDaysNum.click();
@@ -165,21 +166,21 @@ public class AutomationPageObject extends PageObject {
         receiveOffers.click();
 
 
-        firstNameYourAddress.sendKeys(parameters.get(0));
-        lastNameYourAddress.sendKeys(parameters.get(1));
-        company.sendKeys(parameters.get(4));
-        txtAddress.sendKeys(parameters.get(5));
-        txtAddressTwo.sendKeys(parameters.get(6));
-        txtCity.sendKeys(parameters.get(7));
+        firstNameYourAddress.sendKeys(firstNamee);
+        lastNameYourAddress.sendKeys(lastNamee);
+        company.sendKeys(companyy);
+        txtAddress.sendKeys(addressOne);
+        txtAddressTwo.sendKeys(addressTwo);
+        txtCity.sendKeys(city);
         selectState.click();
         selectStateOption.click();
-        txtPostalCode.sendKeys(parameters.get(8));
+        txtPostalCode.sendKeys(postalCode);
         selectCountry.click();
         selectCountryOption.click();
-        txtAddInformation.sendKeys(parameters.get(9));
-        txtHomePhone.sendKeys(parameters.get(10));
-        txtMobilePhone.sendKeys(parameters.get(11));
-        txtAliasReference.type(parameters.get(12));
+        txtAddInformation.sendKeys(otherInfo);
+        txtHomePhone.sendKeys(homePhone);
+        txtMobilePhone.sendKeys(mobilePhone);
+        txtAliasReference.type(alias);
     }
 
 
@@ -190,10 +191,10 @@ public class AutomationPageObject extends PageObject {
     }
 
 
-    public void verifyMyAccount(List<String> parameters) {
+    public void verifyMyAccount( String confirmAccount) {
 
         String textToVerify = labelWelcomeAccount.getText();
-        if (textToVerify.equals(parameters.get(0))) {
+        if (textToVerify.equals(confirmAccount)) {
             Logger.getLogger("TEST SUCCESS");
             btnLogout.click();
         } else {
@@ -201,13 +202,13 @@ public class AutomationPageObject extends PageObject {
         }
     }
 
-    public void emailRegister(List<String> parameters) {
-        emailRegister.sendKeys(parameters.get(0));
+    public void emailRegister(String email) {
+        emailRegister.sendKeys(email);
     }
 
 
-    public void enterPassword(List<String> parameters) {
-        passwdRegister.sendKeys(parameters.get(0));
+    public void enterPassword(String password) {
+        passwdRegister.sendKeys( password);
     }
 
 
